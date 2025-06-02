@@ -6,15 +6,31 @@ export class ALU {
 
   operar(operacion: TipoOperacion, a: number, b: number): number {
     switch (operacion) {
-      case TipoOperacion.ADD:
-        this.resultado = a + b; break;
-      case TipoOperacion.SUB:
-        this.resultado = a - b; break;
-      case TipoOperacion.AND:
-        this.resultado = a & b; break;
-      case TipoOperacion.OR:
-        this.resultado = a | b; break;
-      // Agrega más operaciones según tu enum
+      case "ADD":
+        this.resultado = (a + b) & 0xFF;
+        break;
+      case "SUB":
+        this.resultado = (a - b) & 0xFF;
+        break;
+      case "AND":
+        this.resultado = a & b;
+        break;
+      case "OR":
+        this.resultado = a | b;
+        break;
+      case "XOR":
+        this.resultado = a ^ b;
+        break;
+      case "NOT":
+        this.resultado = (~a) & 0xFF;
+        break;
+      case "INC":
+        this.resultado = (a + 1) & 0xFF;
+        break;
+      case "DEC":
+        this.resultado = (a - 1) & 0xFF;
+        break;
+      
       default:
         this.resultado = 0;
     }
