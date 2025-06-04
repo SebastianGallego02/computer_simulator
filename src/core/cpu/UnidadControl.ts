@@ -31,10 +31,20 @@ export class UnidadControl {
         break;
 
       case CodigosInstruccion.LOAD:
-        cpu.registros.escribir(0, cpu.memoria.leer(operando));
+        cpu.mar.setDireccion(operando);
+        cpu.bus.enviarDireccion(cpu.mar.valor);
+        cpu.bus.enviarDato(cpu.memoria.leer(cpu.mar.valor));
+        cpu.mbr.setDato(cpu.bus.dato);
+        
+        const mbrValue = cpu.mbr.valor & 0b00011111;         // se hace asi, para garantizar que pasa por el mbr
+        cpu.registros.escribir(0, mbrValue);
+        // cpu.registros.escribir(0, cpu.memoria.leer(operando));
         break;
 
       case CodigosInstruccion.ADD:
+        cpu.mar.setDireccion(operando);
+        cpu.bus.enviarDireccion(cpu.mar.valor);
+        cpu.mbr.setDato(cpu.memoria.leer(cpu.mar.valor));
         {
           const acc = cpu.registros.leer(0);
           const valor = cpu.memoria.leer(operando);
@@ -43,10 +53,15 @@ export class UnidadControl {
         break;
 
       case CodigosInstruccion.STORE:
-        {
-          const acc = cpu.registros.leer(0);
-          cpu.memoria.escribir(operando, acc);
-        }
+        cpu.mar.setDireccion(operando);
+        cpu.bus.enviarDireccion(cpu.mar.valor);
+        cpu.bus.enviarDato(cpu.registros.leer(0));
+        cpu.mbr.setDato(cpu.registros.leer(0));
+        cpu.memoria.escribir(cpu.mar.valor, cpu.mbr.valor);
+        // {
+        //   const acc = cpu.registros.leer(0);
+        //   cpu.memoria.escribir(operando, acc);
+        // }
         break;
 
       case CodigosInstruccion.HALT:

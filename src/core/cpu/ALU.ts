@@ -4,7 +4,10 @@ import { TipoOperacion } from "../enums/TipoOperacion";
 export class ALU {
   resultado: number = 0;
 
-  operar(operacion: TipoOperacion, a: number, b: number): number {
+  operar(operacion: TipoOperacion, OpeA: number, OpeB: number): number {
+    const a = OpeA & 0b00011111;         // 5 bits menos significativos
+    const b = OpeB & 0b00011111;         // 5 bits menos significativos
+
     switch (operacion) {
       case "ADD":
         this.resultado = (a + b) & 0xFF;

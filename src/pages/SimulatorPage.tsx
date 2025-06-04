@@ -132,21 +132,6 @@ export default function SimulatorPage() {
                 </div>
               </CardContent>
             </Card>
-
-            {/* Main Memory */}
-            <Card className="bg-slate-800/50 border-slate-700 backdrop-blur">
-              <CardHeader>
-                <CardTitle className="text-green-400">Memoria Principal</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="bg-slate-700/30 p-4 rounded-lg h-32 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-slate-400 text-sm mb-2">Espacio de Memoria</div>
-                    <div className="text-green-400 font-mono">{memoria.memoria.length} celdas × 8 bits</div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
 
           {/* Memory and Instructions */}
