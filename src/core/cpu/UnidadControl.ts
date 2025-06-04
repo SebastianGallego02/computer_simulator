@@ -51,6 +51,16 @@ export class UnidadControl {
           cpu.registros.escribir(0, cpu.alu.operar(TipoOperacion.ADD, acc, valor));
         }
         break;
+      case CodigosInstruccion.SUB:
+        cpu.mar.setDireccion(operando);
+        cpu.bus.enviarDireccion(cpu.mar.valor);
+        cpu.mbr.setDato(cpu.memoria.leer(cpu.mar.valor));
+        {
+          const acc = cpu.registros.leer(0);
+          const valor = cpu.memoria.leer(operando);
+          cpu.registros.escribir(0, cpu.alu.operar(TipoOperacion.SUB, acc, valor));
+        }
+        break;
 
       case CodigosInstruccion.STORE:
         cpu.mar.setDireccion(operando);
@@ -63,6 +73,11 @@ export class UnidadControl {
         //   cpu.memoria.escribir(operando, acc);
         // }
         break;
+
+        case CodigosInstruccion.INP:
+                 
+        break;
+
 
       case CodigosInstruccion.HALT:
         cpu.halted = true;

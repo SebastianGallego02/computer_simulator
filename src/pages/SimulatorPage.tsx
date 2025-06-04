@@ -17,15 +17,18 @@ export default function SimulatorPage() {
     currentInstructionIdx,
     executionTime,
     isRunning,
+    input,
     setIsRunning,
     cargarPrograma,
     ejecutarCiclo,
     reset,
     setInstructions,
-    setCurrentInstructionIdx
+    setCurrentInstructionIdx,
+    setInput,
+    onSetInput
   } = useSimulador(32)
 
-  const [programInput, setProgramInput] = useState("00000001\n00100010\n01000011\n11100000") // ejemplo: LOAD, ADD, STORE, HALT
+  const [programInput, setProgramInput] = useState("00000000\n00100001\n00100010\n01000011\n11100000") // ejemplo: LOAD, ADD, STORE, HALT
 
   // Auto ejecución
   useEffect(() => {
@@ -267,6 +270,15 @@ export default function SimulatorPage() {
                     </div>
                   </div>
                 </div>
+                  <Separator className="my-2" />
+                <textarea
+                    className= {`w-full mb-4 bg-slate-900/60 rounded p-2 text-xs text-orange-200 font-mono`}
+                    rows={4}
+                    placeholder="Ej: 00000001&#10;00100010&#10;01000011&#10;11100000"
+                    value={input}
+                    onChange={e => onSetInput(e.target.value)}
+                    disabled = {instrucciones[currentInstructionIdx - 1] != `10100000`}
+                  />
               </CardContent>
             </Card>
           </div>

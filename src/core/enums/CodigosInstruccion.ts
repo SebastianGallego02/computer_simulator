@@ -3,8 +3,8 @@ export const CodigosInstruccion = {
     STORE: "STORE",
     ADD: "ADD",
     SUB: "SUB",
-    JMP: "JMP",
-    JZ: "JZ",
+    INP: "INP",
+    OUT: "OUT",
     JNZ: "JNZ",
     NOP: "NOP",
     HALT: "HALT"
@@ -19,7 +19,7 @@ export const opcodeToInstruction: CodigosInstruccion[] = [
   CodigosInstruccion.STORE, // 2 - 010
   CodigosInstruccion.ADD,   // 3 - 011
   CodigosInstruccion.SUB,   // 4 - 100
-  CodigosInstruccion.JMP,   // 5 - 101
-  CodigosInstruccion.JZ,    // 6 - 110
+  CodigosInstruccion.INP,   // 5 - 101
+  CodigosInstruccion.OUT,    // 6 - 110
   CodigosInstruccion.HALT,  // 7 - 111
 ]

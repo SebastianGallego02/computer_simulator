@@ -19,6 +19,8 @@ export function useSimulador(memorySize = 32) {
   const [currentInstructionIdx, setCurrentInstructionIdx] = useState(0)
   const [isRunning, setIsRunning] = useState(false)
   const [executionTime, setExecutionTime] = useState(0)
+  const [input, setInput] = useState("00000000") // ejemplo: LOAD, ADD, STORE, HALT
+
 
   // Carga instrucciones en binario directamente en memoria
   const cargarPrograma = (lines: string[]) => {
@@ -28,6 +30,11 @@ export function useSimulador(memorySize = 32) {
     setCurrentInstructionIdx(0)
     setExecutionTime(0)
     setRefresh(x => x + 1)
+  }
+
+  const onSetInput = (value: string) => {
+    setInput(value)
+    cpu.registros.escribir(0, parseInt(value))
   }
 
   const ejecutarCiclo = () => {
@@ -57,11 +64,14 @@ export function useSimulador(memorySize = 32) {
     currentInstructionIdx,
     executionTime,
     isRunning,
+    input,
     setIsRunning,
     cargarPrograma,
     ejecutarCiclo,
     reset,
     setInstructions,
-    setCurrentInstructionIdx
+    setCurrentInstructionIdx,
+    setInput,
+    onSetInput
   }
 }
