@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "../components/Card"
 import { Button } from "../components/Button"
 import { Badge } from "../components/Badge"
@@ -23,8 +23,6 @@ export default function SimulatorPage() {
     ejecutarCiclo,
     reset,
     setInstructions,
-    setCurrentInstructionIdx,
-    setInput,
     onSetInput
   } = useSimulador(32)
 

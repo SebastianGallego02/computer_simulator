@@ -1,6 +1,4 @@
 // src/components/ui/separator.tsx
-import React from "react"
-
 export function Separator({ className = "", ...props }) {
   return (
     <hr

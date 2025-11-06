@@ -13,7 +13,7 @@ export function useSimulador(memorySize = 32) {
   const [bus] = useState(() => new BusSistema())
   const [interrupciones] = useState(() => new ManejadorInterrupciones())
   const [cpu] = useState(() => new CPU(memoria, io, bus, interrupciones))
-  const [refresh, setRefresh] = useState(0)
+  const [, setRefresh] = useState(0)
 
   const [instructions, setInstructions] = useState<string[]>([])
   const [currentInstructionIdx, setCurrentInstructionIdx] = useState(0)

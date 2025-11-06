@@ -7,7 +7,7 @@ export class ManejadorInterrupciones {
   procesarInterrupciones() {
     // Procesa y limpia la primera interrupción de la cola
     if (this.interrupciones.length > 0) {
-      const int = this.interrupciones.shift();
+      this.interrupciones.shift();
       // Lógica de manejo
     }
   }
